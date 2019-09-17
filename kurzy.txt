@@ -1,0 +1,1266 @@
+Java
+Git
+JavaScript
+
+OOP
+
+Objects have
+=============
+- state (field, variables)
+- behavior (methods)
+
+Classs
+======
+- template or blueprint for creating the object
+- define new data type (regular data type on steroides)
+- each class is in file with her name for example Car.java
+
+Example:
+========
+public class Car { //statement to create new class named Car
+
+}  
+
+Car porsche = new Car(); //new instance initialization
+
+setters, getters  - reason - we can do some validation, we have it under control
+
+Access modifiers
+================
+public - unrestricted access to the class
+private - class can be accessed only within that class
+without modifier = package private
+
+Encapsulation
+=============
+- not access directly variables but via setters and getters
+
+Constructors
+============
+- is a relationship
+- serves for initialization of the instance
+- non-parametric
+- we can call other constructors with this
+
+Inheritance
+===========
+- objects can share similar characteristic
+- classes can inherit behavior from other classes
+- every class inherits from Object class, every class is extended by Object
+- class Animal
+- class Dog extends Animal - constructor in Animal class must contain super(xx,x,x,x,x) 
+
+Composition
+===========
+- has a relationship
+- Class contain reference to other classes as their member fields/variables
+
+When to use Inheritance nad Composition?
+========================================
+- at first try to use composition before inheritance
+- it depends on the solution you want to achieve
+
+Encapsulation
+=============
+- restrict access to the object components (avoid unauthorized access)
+- direct access to field/variables can cause problem such if you change the name of
+variable in the class and in other code you directly access variable you have to change that code too.
+The second one, when you give control over the variables to the public there is no guarantee that will be all initialized.
+There is no validation if you give direct control over variables of the class.
+- constructor guarantee correct initialization
+
+Polymorphism
+============
+- when you inherit from another class and override the method
+- decision what method will be called is made in running
+                
+
+=======================
+Databases
+=======================
+
+Database management systems (DBMS):
+-----------------------------------
+Software for installation:
+- Oracle
+- SQL Server
+- MySQL
+- PostgreSQL
+- MongoDB
+
+DBMS are used to create one or more databases and can managed them.
+Each database with different rules and security. One database for HR, second for Customers and Orders.
+Many companies have many DBMS. Some software require particular DBMS.
+If one company buy another which use different DBMS. Each DBMS has strong and weak parts.
+
+Types of DBMS
+-------------
+- Hierarchical DBMS
+- Network DBMS
+- Object-Oriented DBMS
+- NoSQL DBMS
+
+Relational DBMS
+===============
+- most widely used
+- use the same principles across all offerings
+- are foundational for understandin other systems
+
+Database
+========
+Database is constructed with one or more tables.
+
+Table
+=====
+Table consits of columns and rows.
+
+Row
+===
+Structure of columns. One row = one record.
+Every row must follow same structure.
+
+Colummn
+=======
+Column describes one piece of data. Each data has a type: text, date, number.              
+
+A key
+=====
+A key identifies one particular row in a table. Key = unique value in table.
+Database can generate automatically unique numbers like Customer ID, Employee ID.
+It is called PRIMARY KEY.
+
+Primary key
+===========
+Generated primary keys are also sometimes called synthetic keys or surrogate keys.
+Primary key can be natural. Primary key connects tables together.
+
+Defining table relations
+========================
+Example: Customer table has CustomerID as a primary key.
+Order table has OrderID as a primary key and CustomerID as a foreign key (not unique).
+
+One to many relationship
+========================
+One customer can have many orders. E.g. One categry can have many products. 
+One department can have many employees etc.
+
+Many to many relationship
+=========================
+Most RDMS can not define many to many directly. It can be defined indirectly using joint table.
+For Example Author table and Book Table. Book can have more Authors and Athors have more books 
+so we create AuthorBook table, where will be two columns AuthorID and BookID not unique. 
+
+One to one relationship
+=======================
+Not common at all.
+
+None relationship
+=================
+
+Transactions and the ACID Test
+==============================
+Transaction is  combined unit a work.
+
+Atomic - transaction must completely happen or not at all
+Consistent - any transaction must take the database from one valid state to another valid state based on the rules of the database 
+Isolated - data in a transaction being essentialy locked for that moment transaction occurent 
+Durable - robust transaction - when transaction happens successfuly it is guaranteed that it has been done properly
+
+These rules are implemented in RDMS.
+
+SQL - Structured Query Language
+===============================
+Declarative query language.
+CRUD - create, read, update, delete
+
+Normalization
+=============
+Main aim is to make your database more reliable to work with.
+Database should contain minimum of duplicant or redundant data.
+
+Normalization must be done step-by-step: 1. 1NF, 2. 2NF. 3. 3NF
+
+
+First Normal Form (1NF)
+=======================
+Each of column int table should contain one value and not repeating group
+
+Example (one value):
+Name	Computer   NOT	Computer
+------	-------		-----------------------
+Martin	Notebook	Notebook, PC, Tablet
+
+Example: (repeating groups):
+ID	Name	Computer1	Computer2	Computer3
+------	------    ---------	----------	---------
+101	Martin   Notebook          PC	        Tablet		
+
+RIGHT WAY:
+
+IDName	    COMPUTER
+-------    --------
+101   	    Notebook
+101         PC
+101         Tablet
+
+
+Second Normal Form (2NF)
+========================
+Can I figure out any of the values in this row from just part of the composite key?
+
+- relationship between columns that are your keys and columns that are not your keys
+- definition: Any non-key field should be dependent on the entire primary key
+- be aware only if when we use composit primary key
+
+Course	Date		Course name	    Room	Capacity	Available
+------	-----------	-----------    	    ----	-------		-----
+SQL 1	1.1.2018	SQL Fundamentals    4A		12		3
+SQL 1	10.1.2018	SQL Fundamentals    4B	        8		10
+CS200	1.3.2018	C programming       5C		3		8
+
+Course and date are composite primary key.
+
+Course name is dependent only on half of the primary key on Course not on Date.
+
+We need create table only for courses.
+
+
+CourseID 	Title
+--------	-----
+SQL1		SQL Fundamentals
+CS200		C Programming
+
+
+Third Normal Form (3NF)
+=======================
+- definition: No non-key field is dependent on any other non-key field.
+Can I figure out any of the values from any other values in this row?
+
+Look on Room, Capacity, Available
+
+Course	Date	   	Room	Capacity	Available
+------	-----------	----	-------		---------
+SQL 1	1.1.2018	4A	12		10
+SQL 1	10.1.2018	4B	8		7
+CS200	1.3.2018	5C	2		5
+CS200	4.5.2018	4A	12		5
+
+
+Room has still the same Capacity. So the non-key field is dependent on other non-key field.
+
+So we create new table:
+
+Room	Capacity
+-----	--------
+4A	12
+4B	8
+
+Another example:
+
+ID	OrderID		ProductID	Quantity	UnitPrice	Total
+-----------------------------------------------------------------------------
+100	454		A43		4		150		600
+
+Total is dependent on both non-key fields (Quantity, UnitPrice)
+We do not need to add Total. We can figure it out - calculated column - it is not stored in the database.
+
+
+Database Denormalization
+-------------------------
+1NF
+No repeating values and no repeating groups
+2NF
+No non-key values based on just part of a composite key
+3NF
+No non-key values based on other non-key values
+
+
+- to optimize database we usually break normalization rules
+
+EmployeeID | FirstName | LastName | Email | Phone | Email2 | Phone2
+
+- columns are doubled Email, Email2, Phone, Phone2 (repeating group)
+- demormalization for performance improvement
+
+
+Creating Queries in SQL
+=======================
+
+SELECT columns //general form
+FROM table
+
+
+Table: Employee
+---------------
+EmployeeID (PK)
+FirstName
+LastName
+HireDate
+Email
+Department
+Salary
+
+
+SELECT
+------
+
+SELECT FirstName, LastName	//select particular columns
+FROM Employee;
+
+SELECT *	//select all columns from table
+FROM Employee;
+
+SELECT *
+FROM Employee
+WHERE Salary > 50000;  //criteria
+
+
+SELECT *
+FROM database.table   //explicit  name for table
+WHERE Salary > 50000;
+
+
+SELECT *
+FROM HumanResources.Employee
+WHERE Salary > 50000;
+
+
+WHERE
+-----
+SELECT *
+FROM Employee  
+WEHRE LastName = 'Green';
+
+SELECT *
+FROM Employee
+WHERE Salary > 50000;
+
+SELECT *
+FROM Employee
+WHERE Salary > 50000 AND DepartmentName='Marketing';
+
+SELECT *
+FROM Employee
+WHERE DepartmentName='Marketing' OR DepartmentName='Sales';
+
+SELECT *
+FROM Employee
+WHERE DepartmentName IN ('Marketing', 'DepartmentName');
+
+SELECT *
+FROM Employee
+WHERE LastName LIKE 'Green%'; //Green ends with anything
+
+SELECT *
+FROM Employee
+WHERE LastName LIKE 'Sm_th'; //different one letter in name
+
+SELECT *
+FROM Employee
+WHERE MiddleInitial IS NULL; //value is not set
+
+SELECT *
+FROM Employee
+WHERE MiddleInitial IS NOT NULL; //value is set, returns not null rows.
+
+
+Sorting Your Results
+--------------------
+SELECT Description, ListPrice, Color
+FROM Product;  //without order
+
+SELECT Description, ListPrice, Color
+FROM Product 
+ORDER BY ListPrice;  //sort by ListPrice in ascending order (default behaviour)
+
+SELECT Description, ListPrice, Color
+FROM Product 
+ORDER BY ListPrice DESC;  //sort by ListPrice in descending order
+
+SELECT *
+FROM Employee
+WHERE Salary > 50000
+ORDER BY LastName, FirstName; //sort first be ordering by LastName and subordering by FirstName
+
+
+
+
+
+=====================================
+SQL Lite
+=====================================
+www.sqlite.org
+.quit //quit application
+.exit //quit application
+.help   //shows help
+sqlite3 test.db //create new database
+.open songs.db //opens current database
+
+.databases //shows all available databases
+.headers on //shows the column names in SELECTs
+.tables //print all tables in database
+.schema //print structure of the database (tables)
+.dump //gives SQL statements for creating table but all insertist to pouplate data with it  
+
+create table contacts (name text, phone integer, email text); //create table with three columns
+
+insert into contacts (name, phone, email) values ('Tim', 65, 'tim@email.com'); //inserting record
+
+SELECT * FROM contacts;   //select all columns from table
+SELECT name, phone FROM contacts;   //select all columns from table
+
+INSERT INTO contacts VALUES("Brian", 1234, "brian@yemail.com"); //we provide all fields, so there is no need specify fields
+INSERT INTO contacts VALUES("Steve",84654);    //error we provide only 2 values
+INSERT INTO contacts(name, phone) VALUES ("Steve", 84654);
+
+//you can insert any value to column, either it is integer or text...
+INSERT INTO contacts VALUES("Avril","+61 (0)126546546", "avril@gmial.com.au");
+
+
+RESTORE and BACKUP
+------------------
+.backup testbackup //makes backup of the database 
+.restore testbackup //restore backup of the database 
+
+UPDATE
+------
+UPDATE contacts SET email="steve@isemail.com"; //update every row - ATTENTION
+UPDATE contacts SET email="steve@isemail.com" WHERE name="Steve"; //update only one row
+
+SELECT * FROM contacts WHERE name="Brian";
+
+DELETE FROM contacts WHERE phone=1234; //deletes particular row
+
+Open database
+-------------
+sqlite3 music.db
+
+PRIMARY KEY
+NOT NULL
+
+
+SELECT * FROM albums ORDER BY name DESC;  //sort names alphabetically, takes into account the letter size
+SELECT * FROM albums ORDER BY name COLLATE NOCASE DESC;  //ignore size of letters, sort reverse from Z to A
+
+SELECT * FROM albums ORDER BY artist, name COLLATE NOCASE; //sort according artist and then by name
+
+
+JOIN
+-----
+
+SELECT songs.track, songs.title, albums.name FROM songs JOIN albums ON songs.album=albums._id; //shorhand for inner join not all DB allows it
+
+SELECT songs.track, songs.title, albums.name FROM songs INNER JOIN albums ON songs.album=albums._id; //explicit inner join
+
+INNER JOIN - gives the result of A intersect B, i.e. the inner part of a Venn diagram
+OUTER JOIN - givest the results of A union B, ie. the outer parts of a Venn diagram
+
+
+SELECT albums.name, songs.track, songs.title FROM songs INNER JOIN albums ON songs.album = album._id ORDER BY albums.name, song.track;
+
+INNER JOIN ON to Joined tables
+------------------------------
+SELECT artists.name, albums.name, songs.track, songs.title from songs
+INNER JOIN albums ON songs.album = albums._id
+INNER JOIN artists ON albums.artist = artists._id
+WHERE albums._id = 19;
+
+
+SELECT artists.name, albums.name, songs.track, songs.title from songs
+INNER JOIN albums ON songs.album = albums._id
+INNER JOIN artists ON albums.artist = artists._id
+WHERE albums.name = "Doolittle"
+ORDER BY artists.name, albums.name, songs.track;
+
+WILDCARDS
+---------
+//print all records that contains word "doctor"
+SELECT artists.name, albums.name, songs.track, songs.title from songs
+INNER JOIN albums ON songs.album = albums._id
+INNER JOIN artists ON albums.artist = artists._id
+WHERE songs.title LIKE "%doctor%"
+ORDER BY artists.name, albums.name, songs.track;
+
+- LIKE is not CASE SENSITIVE
+
+//name start with jefferson
+SELECT artists.name, albums.name, songs.track, songs.title from songs
+INNER JOIN albums ON songs.album = albums._id
+INNER JOIN artists ON albums.artist = artists._id
+WHERE artists.name LIKE "jefferson%"      
+ORDER BY artists.name, albums.name, songs.track;
+
+VIEWS
+-----
+- virtual table, selects can be made on this table
+- views can be used for users that must not se all data from table (different departments ect.)
+CREATE VIEW artist_list AS
+SELECT artists.name, albums.name, songs.track, songs.title FROM songs
+INNER JOIN albums ON songs.album = albums._id
+INNER JOIN artists ON albums.artist = artists._id
+ORDER BY artists.name, albums.name, songs.track;
+
+
+//setting names to columns with the same name  artists.name and albums.name
+CREATE VIEW artist_list AS
+SELECT artists.name AS artist, albums.name AS album, songs.track, songs.title FROM songs            
+INNER JOIN albums ON songs.album = albums._id
+INNER JOIN artists ON albums.artist = artists._id
+ORDER BY artists.name, albums.name, songs.track;
+
+SELECT * FROM artist_list;
+
+DROP - delete table or view
+====
+DROP VIEW artist_list; 
+DROP TABLE songs;
+
+DELETE
+======
+DELETE FROM songs WHERE track < 50;
+
+<>  - not equal
+===
+SELECT * FROMS songs WHERE track <> 71;  //track is not equal to 71
+
+COUNT - counts number of records according conditions
+=====
+SELECT count(*) FROM albums;
+
+---------
+Challenge
+---------
+
+1. Select the titles of all the songs on the album "Forbidden"
+----------- 
+SELECT songs.title FROM songs INNER JOIN albums ON songs.album=albums._id
+WHERE albums.name="Forbidden";
+
+2. Repeat the previous query but this time display the songs in track order. You may want to include
+the track number in the output to verify that it worked
+---------
+SELECT songs.title, songs.track FROM songs INNER JOIN albums ON songs.album=albums._id
+WHERE albums.name="Forbidden" ORDER BY songs.track; 
+
+3. Display all songs for the band "Deep Purple"
+---------
+SELECT songs.title FROM songs INNER JOIN albums ON songs.album==albums._id
+INNER JOIN artists ON albums.artist=artists._id
+WHERE artists.name="Deep Purple";
+
+4. Rename the band "Mehitabel" to "One Kitten". Note that this is an exception to the advice
+to always fully qualify your column names. SET artists.name won't work, you just need to specify name.
+--------------
+UPDATE artists SET name="One Kitten" WHERE artists.name = "Mehitabel"; 
+
+5. Check if the name is properly renamed
+-----------
+SELECT * FROM artists WHERE artists.name="One Kitten";
+
+6. Select the titles of all the songs by Aerosmith in alphabetical order. Include only the title in the output.
+----------
+SELECT songs.title FROM songs INNER JOIN albums ON songs.album = albums._id
+INNER JOIN artists ON artists._id=albums.artist
+WHERE artists.name = "Aerosmith"
+ORDER BY songs.title;
+
+7. Replace the column that you used in the previous answer with count(title) to get just a 
+count of the number of songs.
+--------------
+SELECT count(songs.title) FROM songs INNER JOIN albums ON songs.album = albums._id
+INNER JOIN artists ON artists._id=albums.artist
+WHERE artists.name = "Aerosmith"
+ORDER BY songs.title;
+
+8. Search the internet to find out how to get a list of the songs from step 6 without any duplicates. 
+--------------
+SELECT DISTINCT songs.title FROM songs INNER JOIN albums ON songs.album = albums._id
+INNER JOIN artists ON artists._id=albums.artist
+WHERE artists.name = "Aerosmith"
+ORDER BY songs.title;
+
+9. Search the internet again to find out how to get a count of the songs without duplicates.
+--------------
+SELECT count(DISTINCT songs.title) FROM songs INNER JOIN albums ON songs.album = albums._id
+INNER JOIN artists ON artists._id=albums.artist
+WHERE artists.name = "Aerosmith"
+ORDER BY songs.title;
+
+10. Repeat the previous query to find the number of artists(which, obviously, should be one)
+and the number of albums.
+----------
+SELECT count(DISTINCT artists.name), count(DISTINCT albums.name) FROM songs INNER JOIN albums ON songs.album = albums._id
+INNER JOIN artists ON artists._id=albums.artist
+WHERE artists.name = "Aerosmith"
+ORDER BY songs.title;
+
+
+=====
+JDCB
+=====
+
+try {
+                //Class.forName("org.sql.JDBC"); used to use
+                Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\Programy\\sqlitedb\\testjava.db");
+                Statement statement = conn.createStatement();
+                statement.execute("CREATE TABLE contacts (name TEXT, phone INTEGER, email TEXT)");
+
+                //right order - statement first then conn to close
+                statement.close();
+                conn.close();
+
+        }catch (SQLException e){
+            System.out.println("Something went wrong " + e.getMessage());
+        }
+
+
+
+=======================================================
+GIT - source code version system ======================
+=======================================================
+git --version
+
+Linux commands
+--------------
+pwd //show current directory
+ls -la //list all files in current directory including hidden files
+ls -la <name of directory>
+
+Configuration
+--------------
+git config --system //system level configuration 
+git config --global //user level configuration      
+git config //project level configuration                          
+git config --global core.editor "notepad.exe"
+git config --list
+
+Help
+-----
+git help //show most commonly used git commands
+git help <name of command>
+
+Initialize a repository
+-----------------------
+git init //initialize project in directory you are right now
+
+Commit
+------
+git add . //add all changes/files from working directory to staging area
+git commit -m "Description of the commit" //commits changes to local repository with a message      
+
+Writing commit messages
+-----------------------
+Commit messages describes the changes I'am making in that commit set.
+How to write good descriptive messages:
+- single line summery (less than 50 characters)
+- optionally followed by a blank line and more complete description
+- keep each line to less than 72 characters
+- write commit messages in present tense, not past tense 
+- describe what commit does - "fix bug", "fixes bug"                                                     
+- can develop shorthand for your organizayion "[css,js]", "bugfix: ", #38405
+Be clear and descriptive:
+- Bad: "Fix typo"
+- Good: "Add missing > in project section of HTML"
+- Bad: "Update login code"
+- Good: "Change user authentication to use Blowfish"
+Good Example: 
+t23094 - Fixes bug in admin logout
+When an admin logged out of the admin area, they could not log in to the members area because
+their session[:user_id] was still set to the admin ID. This pacth fixes the bug by setting session
+[:user_id] to nil when any user logs out of any area.
+
+Viewing commit log
+------------------
+git log //shows history of commits
+git help log
+git log -n 1  // 1 - how many commits will show
+git log --since=2018-01-01 //shows commits only from particular date
+git log --until=2018-28-02 //shows commits until particular date, but excluding that date
+git log --author="Martin" //shows all commit from particular author
+git log --grep="Init"  //shows all commit which met regular expression
+
+Git concepts and architecture
+-----------------------------
+Git has the three trees architecture:
+->working directory 
+git add file.txt
+-> staging index
+git commit file.txt
+-> repository
+
+Git workflow
+------------
+new file
+1. new file.txt in working directory (v1)
+2. git add file.txt to staging index (v1)
+3. git commit file.txt to repository (v1) A commit
+
+edited file
+1. update file.txt in working directory (v2)
+2. git add file.text to staging index (v2)
+3. git commit file.txt to repository (v2) A and B commits
+
+edited file
+1. update file.txt in working directory (v3)
+2. git add file.text to staging index (v3)
+3. git commit file.txt to repository (v3) A, B and C commits
+
+git log //shows A, B, C commits (snapshots)
+
+A, B and C are set of changes.
+
+Reffering to commits
+--------------------
+A, B and C are snaphots. Each can contain several files.
+- When we commit changes to repository Git generates a checksum for each change set.
+ - checksum algorithms convert data into a simple number (checksum)
+ - same data always equals same checksum (if we make change to data the checksum will change too)
+   Checksum is to used to make sure that data did not change.
+- data integrity is fundamental
+  - git does make sure that you can not change what is in the commit
+  - changing data would change checksum
+- Git uses SHA-1 hash algorithm to create checksums
+  - 40-character hexadecimal string (0-9,a-f)
+- Git takes entire set of changes run them through the algorithm and at the end comes out one 40-digits number
+- Commits points to each other vie SHA-1 hashes
+
+The HEAD pointer
+----------------      
+It points to specific commit in the repository. If we make other commits this pointer move.
+HEAD
+- pointer to "tip" (hrot) of current branch in repository
+- last state of repository, what was last checked out
+- points to parent of next commit
+  - where writing commits takes place
+
+ Adding files
+ ------------
+git status //get back at us difference between working directory, staging index and the repository - give us a status between those three trees
+git add . //add all files that are in the directory
+ 
+
+ Editing files
+ -------------
+ git add file.txt
+ git commit -m "Description of the commit"
+ 
+ Viewing changes with diff
+ -------------------------
+ git diff //report changes in our working directory
+ (-) - minus - means what is in the last version
+ (+) - plus - means what is in the new version
+ git diff filex.txt //specify concrete file 
+
+ Viewing only staged changes
+ ---------------------------
+git diff --staged //view only changes in staging directory  
+ 
+ Deleting files (from repository)
+ --------------
+ 1. delete file by hand from working directory
+ 2. git add delete_file.txt  OR git rm delete_file.txt
+ OR
+ 1. git rm delete_file.txt //git delete file from directory and added this change to stage index in one step; file is not in trash, it vanished
+ 
+ Moving and renaming
+ -------------------
+ 1. Rename file and add to staging index
+ -> git see new file and deleted file instead of renaming
+ then gir rm renamed_file.txt
+ -> git recognise that file is renamed
+
+ 1. You can use single statement: git rm second_file.txt secondary_file.txt
+ - file second_file.txt is renamed to secondary_file.txt and added to stage
+
+ Moving file
+ 1. git mv third_file.txt first_directory/third_file.txt
+ 
+ 
+ 
+============================================= 
+SPRING framework=============================
+=============================================
+ - enhanced EJB - easier for maintenance
+ - Spring container - Inversion of Control, Dependency Injection                                                            
+ - XML configuration - Constructor injection, Setter injection, Field injection
+ 
+ 
+Main Application - step by step
+===============================
+
+// 1. load the spring configuration		
+ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beanScope-applicationContext.xml");
+
+//2. reterieve the bean from spring container
+Coach trackCoach1 = context.getBean("myCoach", TrackCoach.class);
+
+//3. call methods
+System.out.println(theCoach.getDailyWorkout());
+
+//4. close context
+context.close();
+
+Injection via XML configuration
+===============================
+
+Dependency on Class - it creates bean with ide myFortuneService from class HappyFortuneService
+-------------------
+<bean id="myFortuneService"
+		class = "com.luv2code.springdemo.HappyFortuneService">
+</bean>
+
+Dependency on Class wit constructor injection - it creates bean with ide myCoah from class TrackCoach and
+---------------------------------------------
+to constracter it put class with id myFortuneService and it is that above
+<bean id="myCoach"
+		class="com.luv2code.springdemo.TrackCoach">
+		
+		<!-- set up constructor injection -->
+		<constructor-arg ref="myFortuneService" />			
+</bean>
+
+Dependency on with field (literal values) injection prom properties
+---------------------------------------------------
+//load the properties file
+<context:property-placeholder location="classpath:sport.properties"/>
+
+//create bean
+<bean id="myCricketCoach"
+		class = "com.luv2code.springdemo.CricketCoach">
+		
+		<!-- set up setter injection -->
+		<property name="fortuneService" ref="myFortuneService" />
+		
+		<!-- inject literal values from sport.properties -->
+		<property name="emailAddress" value="${foo.email}" />
+		<property name="team" value="${foo.team}" />			
+</bean>
+
+Bean scope
+----------
+- deafault is singelton - spring creates only one instance
+
+- if we want more beans from particular class than attribute scope="prototype" must be set
+Example:
+<bean id="myCoach"
+		class="com.luv2code.springdemo.TrackCoach"
+		scope="prototype"  
+		>  <!--  Default is singleton -->
+		
+		<!-- set up constructor injection -->
+		<constructor-arg ref="myFortuneService" />				 
+</bean>
+
+
+Injection via annotation configuration
+======================================
+ - in XML configuration file must be set scan component <context:component-scan base-package="com.luv2code.springdemo"></context:component-scan>
+ - above each class must be @Component - then deafult id bean is used
+ Example (explicit bean)
+ @Component("thatSillyCoach")
+ public class ThatSillyCoach 
+ 
+Annotation constructor injection
+--------------------------------
+ - above constructor must be @Component
+ Example:
+@Autowired //constructor injection 
+public TennisCoach(FortuneService fortuneService) { this.fortuneService = fortuneService; } 
+ 
+ 
+Annotation field injection
+--------------------------
+@Autowired // field injection - frotuneService is set Automatically behind the scene - using reflection
+@Qualifier("randomFortuneService")  //it finds class RandomFortuneService and create it and assigned to the field
+private FortuneService fortuneService;
+ 
+Annotation field via properties injection
+----------------------------------------- 
+ -in XML configuration file must be set <context:property-placeholder location="classpath:sport.properties"/> - file saved in src folder
+ - in class above particular field must be @Value and value from properties "${foo.email}". 
+ Example: 
+ @Value("${foo.email}")
+ private String email;
+ 
+Bean Scope Annotation
+---------------------
+Example:
+@Scope("prototype")
+public class TennisPlayer implements Coach{
+ 
+}
+  
+@PostConstruct and @PreDestroy  - bean Lifecycle methods
+------------------------------
+
+@PostConstruct - annotation mark method which is executed after constructor and after injection of dependencies  
+void postConstruct(){
+}
+
+@PreDestroy - annotation mark method which is executed before bean is destroyed  
+void beforeDestroy(){
+}
+
+Note:
+For "prototype" scoped beans, Spring does not call the @PreDestroy method.  Gasp!
+To get the Spring container to release resources held by prototype-scoped beans, try using a custom bean post-processor, which holds a reference to beans that need to be cleaned up.
+
+Spring Configuration with Java Code  (no XML)
+---------------------------------------------
+
+Ways of configuring Spring container
+1. Full XML Config
+2. XML Component Scan
+3. Java Configuration Class
+
+@Configuration
+@ComponentScan("com.luv2code.springdemo")
+public Class SportConfig {
+}      
+
+In MyApp - main method we need to load config
+// read spring config java class
+		AnnotationConfigApplicationContext context =
+				new AnnotationConfigApplicationContext(SportConfig.class);
+        
+-------------------------
+Defining Beans in Spring
+-------------------------
+1. Define method to expose bean
+2. Inject bean dependencies
+3. Read Spring Java configuration class
+4. Retrieve bean from Spring container
+
+Step 1. Define method to expose bean
+------------------------------------
+- we are using no component scan
+- we define each bean individually in this config class
+
+@Configuration
+public class SportConfig {
+  
+  @Bean
+  public Coach swimCoach(){        // swimCoach is "bean id" registered by spring container
+      SwimCoach mySwimCoach = new SwimCoach();
+      return mySwimCoach;
+  }
+
+}
+
+Step 2. Inject bean dependencies
+--------------------------------
+
+@Configuration
+public class SportConfig {
+  
+  @Bean
+  public FortuneServices happyFortuneService(){   // happyFortuneService is "bean id"
+     return new HappyFortuneService(); 
+  }
+  
+  @Bean
+  public Coach swimCoach(FortuneService fortuneService){
+    SwimCoach mySwimCoach = new SwimCoach( happyFortuneService() ); // inject happyFortuneService()
+    
+    return mySwimCoach;
+  }
+
+}
+
+Step 3. Read Spring Java configuration class
+--------------------------------------------
+
+AnnotationConfigApplicationContext context =
+				new AnnotationConfigApplicationContext(SportConfig.class);
+        
+Step 4. Retrieve bean from Spring container
+--------------------------------------------
+Coach theCoach = context.getBean("swimCoach", Coach.class);
+
+
+--------------------------------------
+Injecting Values from Properties File
+--------------------------------------
+1. Create Properties  File
+2. Load Properties File in Spring config
+3. Reference values from Properties file
+
+Step 1. Create Properties  File
+-------------------------------
+file: sport.properties
+foo.email=myeasycoach@luv2code.com
+foo.team=Awsome Java Coders
+
+Step 2. Load Properties File in Spring config
+---------------------------------------------
+@Configuration
+@PropertySource("classpath:sport.properties")
+public class SportConfig {
+ ...
+} 
+
+Step 3. Reference values from Properties file
+--------------------------------------------
+public class SwimCoach implements Coach {
+  @Value ("${foo.email}")
+  private String email;
+  
+  @Value ("${foo.team}")
+  private String team;
+
+  ...
+
+}
+
+-------------------
+Spring MVC Overview
+-------------------
+- Framework for building web applications in Java
+- Based on Model-View-Controller desing pattern
+- Leverages features of the Core Spring Framework (IoC, DI)
+
+Spring MVC Benefits
+-------------------
+- The Spring way of building web app UIs in Java
+- Leverage a set of reusable UI components
+- Help manage application state for web requests
+- Process form data: validation, conversion etc
+- Flexible configuration for the view layer
+
+Components of a Spring MVC Application
+--------------------------------------
+- A set of web pages to layout UI components
+- A collection of Spring beans (controllers, services, etc...)
+- Spring configuration (XML, Annotations or Java)
+
+Spring MVC Front Controller
+---------------------------
+- Front controller known as DispatcherServlet
+  - Part of the Spring Framework
+  - Already developed by Spring Dev Team
+  
+- You will create
+   - Model objects (contains data - container for data)
+   - View templates (render the data)
+   - Controller class (business logic or processing logic)
+   
+Controller
+----------
+- Code created by developer
+
+- Contains your business logic
+  - Handle the request
+  - Store/retrieve data (db, web service...)
+  - Place data in model
+  
+- Send to appropriate view template
+
+Model
+-----
+- Model contains your data
+
+- Store/retrieve data via backend systems
+  - database, web services, etc.
+  - Use s Spring bean if you like
+
+- Place your data in the model
+  - Data can be any Java object/collection
+  
+View Template
+-------------
+- Spring MVC is flexible
+  - Supports many views templates
+  
+- Most common is JSP + JSTL
+
+- Developer creates a page
+  - Displays data
+
+- Other view templates supported
+  - Thymeleaf, Groovy
+  - Velocity, Freemarker, etc...
+  
+Dev Environment Check Point
+---------------------------
+- Apache Tomcat
+- Eclipse (Java EE version)
+- Connected Eclipse to Tomcat
+
+Spring MVC Configuration
+------------------------
+Part 1
+Add configuration to file: WEB-INF/web.xml
+1. Configure Spring MVC Dispatcher Servlet
+2. Set up URL mappings to Spring MVC Dispatche
+Part 2
+Add configuration to file: WEB-INF/spring-mvc-demo-servlet.xml
+3. Add support for Spring component scanning
+4. Add support for conversion, formatting and validation
+5. Configure Spring MVC View Resolver
+
+Development Process
+-------------------
+1. Create Controller class
+2. Define Controller method
+3. AddRrequest Mapping to Controller method
+4. Rerturn View Name
+5. Develop View Page
+
+Step 1: Create Controller class
+-------------------------------
+@Controller inherits from @Component ... supports scanning
+
+@Controller
+public class HomeController {
+  ...
+}
+
+Step 2: Define Controller method
+--------------------------------
+@Controller
+public class HomeController {
+  
+  public String showMyPage() {
+    ...
+  }
+    
+}
+
+Step 3: AddRrequest Mapping to Controller method
+-------------------------------------------------
+@Controller
+public class HomeController {
+  
+  @RequestMapping("/")
+  public String showMyPage() {
+    ...
+  }
+    
+}
+
+- Annotation maps a path to a method name, that is why you can choose any method name
+
+Step 4: Rerturn View Name
+--------------------------
+@Controller
+public class HomeController {
+  
+  @RequestMapping("/")
+  public String showMyPage() {
+    return "main-menu"; //View Name
+  }
+    
+}
+
+- based on config file it put prefix and suffix: /WEB-INF/view/main-menu.jsp
+
+
+Step 5: Develop View Page
+-------------------------
+<html>
+ <body>
+  <h2>Spring MVC Demo - Home Page</h2>
+ </body>
+</html>
+
+---------------------------------
+Reading Form Data with Spring MVC
+---------------------------------
+
+/showFrom (Request Mapping)   ->   HelloWorld Controller -> helloworld-form.jsp (name and Submit Query)
+
+helloworld-form.jsp  ->  /processFrom (Request Mapping) ->  HelloWorld Controller  -> helloworld.jsp (print name)
+
+Controller Class
+----------------
+
+@Controller
+public class HelloWorldController {
+
+  // need a controller method to show the initial HTML form
+  
+  @RequestMapping("/showForm")
+  public String showForm(){
+    return "helloworld-form";
+  }
+  
+  // need controller method to process the HTML form
+  
+  @RequestMapping("/processForm")
+  public String processForm(){
+    return "helloworld";
+  }
+}
+
+Development Process
+-------------------
+1. Create Controller class
+
+2. Show HTML form
+  a. Create controller method to show HTML Form
+  b. Create View Page for HTML form
+  
+3. Process HTML Form
+  a. Create controller method to process HTML Form
+  b. Develop View Page for Confirmation
+
+---------------------------
+Adding Data to Spring Model
+---------------------------
+
+Spring Model
+------------
+- The Model is a container for your application data
+- In your Controller
+  - You can put anything in the model
+  - strings, objects, info from database, etc...
+ - You View page (JSP) can access data from the model                    
+
+Passing MOdel to your Controller
+--------------------------------
+
+@RequestMapping("/processFormVersionTwo")
+public String letsShoutDud(HttpServletRequest request, Model model){
+  
+  // read the request parameter from the HTML form
+  String theName = request.getParameter("studentName");
+  
+  // convert the data to all caps
+  theName = theName.toUpperCase();
+  
+  // create the message
+  String result = "Yo! " + theName;
+  
+  // add message to the model
+  model.addAttribute("message", result);
+  
+  return "helloworld";
+}
+
+
+View Template - JSP
+-------------------
+<html><body>
+
+Hello World of Spring!
+
+The message: ${message}       // Attribute name, see model.addAtribute("message", result) above
+
+</body></html>                    
+
+Adding more data to your Model
+------------------------------
+
+// get the data
+//
+String result = ...
+List<Stundet> theStudentList = ...
+ShoppingCart theShoppingCart = ...
+
+// add data to the model
+//
+model.addAttribute("message", result);
+model.addAttribute("students", result);
+model.addAttribute("shoppingCart", theShoppingCart);
+
+
