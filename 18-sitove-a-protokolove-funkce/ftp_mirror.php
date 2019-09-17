@@ -72,7 +72,7 @@
 		echo 'Stahování souboru ze serveru... <br />';
 		$fp = fopen($localfile, 'wb');
 		
-		if(!$success = ftp_fget($conn, $fp, $remotefile, FTP_BINARY)){
+		if(!$success = ftp_fget($conn, $fp, $remotefile, FTP_BINARY)){ //download souboru, pro upload na jiný server lze použít příkaz ftp_fput() nebo ftp_put()
 			echo 'Chyba: Nelze stáhnout soubor.';
 			fclose($fp);
 			ftp_quit($conn);
@@ -84,6 +84,15 @@
 		
 		//zavřeme spojení se serverem
 		ftp_close($conn);							
+	
+	    /* Další funkce */
+		//set_time_limit(n v sekundach) - nastavuje max. časový limit po který bude určitý skript běžet
+	
+		//zobrazení seznamu souborů v adresáři na vzdáleném serveru
+		$listing = ftp_nlist($conn, dirname($remotefile));
+		foreach($listing as $filename){
+			echo $filename."<br />;
+		}
 	
 	?>
 	
