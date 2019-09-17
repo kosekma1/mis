@@ -1,0 +1,6 @@
+28. 6. 2019 21:00	1 pneumatik	2 lahví oleje	3 zapalovacích svíček	3960	Adresa doručovací 1
+28. 6. 2019 21:01	10 pneumatik	12 lahví oleje	13 zapalovacích svíček	35160	Adresa doručovací 2
+28. 6. 2019 21:01	565 pneumatik	322 lahví oleje	111 zapalovacích svíček	1804920	Adresa doručovací 3, Praha
+28. 6. 2019 21:12	5 pneumatik	6 lahví oleje	3 zapalovacích svíček	17160	Adresa doručovací 4, Praha
+29. 6. 2019 13:07	150 pneumatik	300 lahví oleje	350 zapalovacích svíček	582000	Adresa č. 5
+11. 9. 2019 23:20	99 pneumatik	99 lahví oleje	99 zapalovacích svíček	338580	pokus

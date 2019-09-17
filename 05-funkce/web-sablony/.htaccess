@@ -1,0 +1,8 @@
+#automaticky vklada obsah soubor na zacatek do kazdeho skritpu ktery zavolame
+php_value auto_prepend_file "c:\xampp\htdocs\mis\5-funkce\web-sablony\header.php"
+
+#automaticky vklada obsah souboru na konec kazdeho skritpu ktery zavolame
+php_value auto_append_file "c:\xampp\htdocs\mis\5-funkce\web-sablony\footer.php"
+
+#vyse uveden lze konfigurovat take v php.ini ale neni nutne uvadte hodnotu php_value 
+#do souboru .htaccess lze vkladat dalsi parametry z php.ini / projevi se jen pro adresar ze kterho se vola

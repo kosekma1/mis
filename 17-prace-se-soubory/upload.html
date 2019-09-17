@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset ="UTF-8" />
+	<title>Upload souborů</title>
+	</head>
+	<body>	
+		    <h1>Upload souborů</h1>
+
+			<form action="upload.php" method="post" enctype="multipart/form-data">
+				<p>				
+				<input type ="hidden" name="MAX_FILE_SIZE" value="1000000" /></p>								
+				<p>
+				<label for="the_file">Vyberte soubor:</label>
+				<input type ="file" name="the_file" id="the_file" />
+				<! Pro upload vice souboru pouzijeme pole /> --!>
+				<! <input type ="file" name="the_files[]" id="the_file" /> --!>
+				<input type="submit" value="Uploadovat soubor" />
+			</form>		  	
+	</body>
+</html>

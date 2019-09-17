@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Bobovy autodíly - Zpětná vazba</title>
+		<style type="text/css">
+			
+			fieldset {
+				width: 30%;
+			}
+			
+			legend {
+			   font-weight: bold;			   
+			}			
+			
+			label {
+			   font-weight: bold;
+			   display: block;
+			}
+			
+			input {
+				margin-bottom: 20px;
+			}
+			
+		</style>
+	<head>
+	<body>
+		<h1>Zpětná vazba od zákazníka</h1>
+		<p>Prosíme, řekněte nám, co si myslíte</p>
+		<form action="processfeedback.php" method="post">
+		 <fieldset>
+			<legend>Zpětná vazba:</legend>
+			<label for="name">Vaše jméno:</label> <input size=35 type="text" name="name"><br>
+			<label for="email">Vaše e-mailová adresa:</label> <input size=35 type="text" name="email"><br>
+			<label for="feedback">Vaše zpětná vazba:</label> <textarea cols="35" rows="10" name="feedback"></textarea>
+		</fieldset>
+		<br />
+		<input type="submit" value="Odeslat zpětnou vazbu">
+		</form>
+	</body>
+
+</html>

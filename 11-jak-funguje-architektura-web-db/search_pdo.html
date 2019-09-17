@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <meta charset="UTF-8" />
+	  <title>Vyhledávání v katalogu Book-O-Rama</title>
+	</head>
+
+	<body>
+	<h1>Vyhledávání v katalogu Book-O-Rama</h1>
+	
+		<form action="results_pdo.php" method="post">
+			<p><strong>Vyberte typ hledání</strong></p>
+			<select name="searchtype">
+				<option value="Author">Autor</option>
+				<option value="Title">Title</option>
+				<option value="ISBN">ISBN</option>
+			</select>
+			<p><strong>Zadejte hledaný výraz:</strong><br />
+			<input name="searchterm" type="text" size="40" /><br />
+			<p><input name="submit" type="submit" value="Hledat"/><br />
+		</form>		
+	</body>
+
+</html>
