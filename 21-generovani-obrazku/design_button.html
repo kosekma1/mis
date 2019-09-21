@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Návrh tlačítka</title>
+</head>
+<body>
+  <h1>Návrh tlačítka</h1>
+
+  <form action="make_button.php" method="post">
+    <p><label for="button_text">Zadejte text tlačítka:</label><br/>
+    <input type="text" name="button_text" id="button_text" size="30" /></p>
+
+    <p>Vyberte barvu tlačítka:<br/>
+      <input type="radio" name="button_color" id="bc_red" value="red" />
+         <label for="bc_red">Červená</label><br/>
+      <input type="radio" name="button_color" id="bc_green" value="green" />
+         <label for="bc_green">Zelená</label><br/>
+      <input type="radio" name="button_color" id="bc_blue" value="blue" />
+         <label for="bc_blue">Modrá</label>
+    </p>
+
+    <button type="submit" name="create_button">Vytvořit tlačítko</button>
+  </form>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Anketa</title>
+</head>
+<body>
+  <h1>Anketa</h1>
+  <p>Koho budete volit ve volbách?</p>
+
+  <form action="show_poll.php" method="post">
+
+    <p>Vyberte politika:<br/>
+      <input type="radio" name="vote" id="jan_novak" value="Jan Novák" />
+      <label for="jan_novak">Jan Novák</label><br/>
+      <input type="radio" name="vote" id="eva_kratka" value="Eva Krátka" />
+      <label for="eva_kratka">Eva Krátká</label><br/>
+      <input type="radio" name="vote" id="josef_hajek" value="Josef Hájek" />
+      <label for="josef_hajek">Josef Hájek</label><br/>
+    </p>
+
+    <button type="submit" name="show_results">Zobrazit výsledky</button>
+  </form>
+
+</body>
+</html>
