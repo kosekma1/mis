@@ -1,4 +1,4 @@
-CREATE DATABASE poll;
+CREATE DATABASE poll CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 USE poll;
 SET NAMES utf8;

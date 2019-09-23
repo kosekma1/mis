@@ -14,18 +14,38 @@ if (empty($vote)) {
 
 // Přihlašujeme se do databáze.
 $db = new mysqli('localhost', 'poll', 'poll', 'poll');
+//nastavení kódování pro připojení do databáze
+$db->query("SET CHARACTER SET 'utf8'");
+$db->query("SET SESSION collation_connection ='utf8_unicode_ci'");
+
 if (mysqli_connect_errno()) {
   echo '<p>Chyba: Nepodařilo se připojit k databázi.<br/>
         Zkuste to prosím později.</p>';
   exit;
 }
-
-// Přidáváme uživatelův hlas.
-$v_query = "UPDATE poll_results 
-              SET num_votes = num_votes + 1
-              WHERE candidate = ?";
+// Přidáváme uživatelův hlas
+// Nejdříve ale zjistíme id záznamu kandidáta - MySQL má nastaven safe update, který je vázaný na ID záznamu - v nastavení se dá zrušit
+$v_query = "SELECT id FROM poll_results WHERE candidate = ?";
 $v_stmt = $db->prepare($v_query);
 $v_stmt->bind_param('s', $vote);
+$v_stmt->execute();
+$v_stmt->store_result();
+
+/* 
+$num_of_rows = $v_stmt->num_rows;
+echo "Počet výsledků = ". $num_of_rows."<br />";
+*/
+
+$v_stmt->bind_result($id); //namapování výsledku do proměnné $id
+$v_stmt->fetch();
+$v_stmt->free_result();
+
+$v_query = "UPDATE poll_results 
+              SET num_votes = num_votes + 1
+              WHERE id = ?";
+			  	  
+$v_stmt = $db->prepare($v_query);
+$v_stmt->bind_param('d', $id);
 $v_stmt->execute();
 $v_stmt->free_result();
 
@@ -51,14 +71,14 @@ $r_stmt->data_seek(0);
 *******************************************/
 
 // Vytvoříme konstanty.
-putenv('GDFONTPATH=/usr/share/fonts/truetype/dejavu');
+//putenv('GDFONTPATH=/usr/share/fonts/truetype/dejavu');
 
 $width = 500;         // šířka obrázku v pixelech
 $left_margin = 50;    // levý okraj grafu
 $right_margin = 50;   // pravý okraj grafu
 $bar_height = 40;
 $bar_spacing = $bar_height / 2;
-$font_name = 'DejaVuSans';
+$font_name = 'C:\Windows\Fonts\DejaVuSans.ttf';
 $title_size = 16;     // v bodech
 $main_size = 12;      // v bodech
 $small_size = 12;     // v bodech
