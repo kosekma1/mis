@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Ukázkový formulář</title>  
+</head>
+<body>
+  <form id="myForm">
+    <label for="first_name">Jméno</label>	
+	<input type="text" name="name[first]" id="first_name" class="name" /><br />
+	<label for="last_name">Příjmení</label>
+	<input type="text" name="name[last]" id="last_name" class="name" /><br />
+	<button type="submit">Odeslat formulář</button>
+  </form>
+  
+  <hr />
+  
+  <div id="webConsole">
+    <h3>Webová konzole</h3>
+  </div>
+  
+  <script src = "//code.jquery.com/jquery-3.4.1.min.js"></script>  
+  
+  <script type="text/javascript">
+  var webConsole = function(msg){
+    var console = $('#webConsole');
+	var newMessage = $('<p>').text(msg);
+	
+	console.append(newMessage);	
+  }
+  
+  $(document).ready(function(){
+  //$(document).on('ready', function(){ // nefunguje nemá se používat
+    $('#first_name').attr('placeholder', 'Jan');
+	$('#last_name').attr('placeholder', 'Novák');	
+  });
+  
+  $('#myForm').on('submit', function(event){
+    var first_name = $('#first-name').val();
+	var last_name = $('#last-name').val();
+	
+	webConsole("Formulář byl odeslán.");
+	alert('Zadal/a jste jméno ' + first_name + " " + last_name + ".");
+  });
+  
+  $('.name').on('focusout', function(event){
+    var nameField = $(event.target);
+	webConsole('Pole s identifkátorem "' + nameField.attr('id') + '" bylo změněno na "' + nameField.val() + '".');
+  });
+  		
+  </script>
+  
+</body>
+</html>

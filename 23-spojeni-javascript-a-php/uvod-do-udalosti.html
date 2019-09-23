@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<head>
+<body>
+
+<p><a href="#">Fakeový odkaz 1</a></p>
+<p><a href="#">Fakeový odkaz 2</a></p>
+<p><a href="https://www.kosek.cz">Fakeový odkaz 3</a></p>
+
+<script src = "//code.jquery.com/jquery-3.4.1.min.js"></script>  
+ 
+<script type="text/javascript">
+/*** Úvod do událostí ***/
+
+//zpracování události ready - navěšení funkce, která se spustí po načtení celého dokumentu
+$(document).ready(function(event) {
+  //kód, který se má provést po načtení dokumentu
+  console.log("Dokument se celý načetl.");
+});
+
+//metoda on reprezentuje univerzální způsob, jak zaregistrovat posluchač události pro kteroukoliv událost
+$('a').on('click', function(event){
+  //uděláme něco v reakci na klepnutí element a
+  console.log("Klepnutí na element a");  
+});
+
+//paramet event představuje objekt události, jenž vznikl při spuštění této události, a jeho vlastnost target obsahuje lement, na němž tato událost nastala
+$('button').on('click', function(event){
+  var button = $(event.target);
+});
+
+//potlačení výchozí události
+$('a').on('click', function(event){
+  event.preventDefault(); //potlačíme  provedení výchozí události, která je na elementu nastavena
+  //uděláme něco v reakci na klepnutí element a  
+  var link = $(event.target).attr('href'); //zjistění atributu elementu
+  console.log("Klepnuli jste na tlačítko s adresou URL: " + link);    
+  
+  var h = $(event.target);
+  console.log("Klepnuli jste na odkaz: " + h.text());    
+});
+
+
+</script>
+
+</body>
+</html>

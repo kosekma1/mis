@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Ukázkový fomrulář</title>  
+</head>
+<body>
+  <form id="myForm">
+    <label for="first_name">Jméno</label>	
+	<input type="text" name="name[first]" id="first_name" class="name" /><br />
+	<label for="last_name">Příjmení</label>
+	<input type="text" name="name[last]" id="last_name" class="name" /><br />
+	<button type="submit">Odeslat formulář</button>
+  </form>
+  
+  <div id="webConsole">
+    <h3>Webová konzole</h3>
+  </div>
+  
+  <script src = "//code.jquery.com/jquery-3.4.1.min.js"></script>  
+  
+  <script type="text/javascript">
+  
+	//výběr pomoci  atributu id (id)
+    var lastName = $('#last_name'); 
+	console.log(lastName);
+	
+	//výběr více atributů - stačí oddělit čárkou
+	var nameElements = $('#first_name, #last_name'); 
+	console.log(nameElements[0]);
+	console.log(nameElements[1]);
+	
+	//výběr skupiny elementů pomocí selektrou třídy (class)
+	var nameElements2 = $('.name');
+	console.log(nameElements2);
+	
+	//výběr elementů input typu text - vyhledávání elementů podle jiných atributů než id a class
+	var nameElements3 = $('input[type="text"]');
+	console.log(nameElements3);
+	
+	//výběr celého těla dokumentu
+	var documentBody = $('body');
+	
+	//výběr prvního elementu input v dokumentu - využití pseudoselektoru
+	var firstInput = $('input:first');
+		
+	var firstInput2 = $('#myForm input:first');
+	
+	//vrací všechny elementy tr v dokumentu
+	var talbeRows = $('tr');
+	
+	//po přidání pseudoselektoru :even a :odd můžeme vrátit každý druhý řádek tabulky - využijeme při formátování každého druhého řádku
+	var oddRows = $('tr:odd');
+	var evenRows = $('tr:even');
+	
+	//selektory je také možné aplikovat na běžné objekty JavaScriptu např. document (reprezentující celý dokument)
+	//ačkoliv se nejedná o selektor, podobným přístupem lze vytvářet nové elementy v paměti, které můžete upravoat a vkládat do dokumentu HTML
+	var jQuerySelector = $(document);
+	
+	//vytvoříme nový odstavec
+	var newParagraph = $('<p>');
+	
+	//vytvoříme celý segment
+	var newParagraph2 = $('<p>Toto je <strong>tučný text</strong>.</p>');
+	
+	//***Zpracování vybraných skupin elementů***
+	var myInput = $('#first_name'); //načteme element/atribut
+	console.log('Element s identifikátorem first_name má hodnotu ' + myInput.val()); //zobrazí hodnotu atributu 
+	myInput.val('Jan');
+	console.log('Hodnota elementu #first_name byla změněna na: ' + myInput.val());
+	
+	//vybereme skupinu elementů obsahující třídu name a vložíme do nich novou třídu (vloží se do každého)
+	var nameFields = $('.name');
+	nameFields.addClass('form-control');
+	
+	var nameFields2 = $('.name');
+	if(nameFields2.length > 0){ //ověřujeme jestli výsledek obsahuje nějaké elementy
+	  console.log('Našli jsme nějaké elementy s třídou "name".');
+	} else {
+	  console.log('Nenašli jsme žádné elementy s třídou "name".');
+	}
+	
+  </script>
+  
+</body>
+</html>
