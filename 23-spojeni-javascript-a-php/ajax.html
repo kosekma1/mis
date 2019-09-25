@@ -58,19 +58,25 @@ $.get('/example.php'){
 }
 
 //zjednodušený požadavek POST
-$.post('/example.php'){
+$.post('/example.php'{
   'parametrDotazovacihoRetezce' : 'hodnotaParametru'
 }, function(data, textStatus, jqXHR){
     console.log(data);
-}
+});
 
 //načítání skriptů JavaScriptu se serveru a jejich spouštění
 $.getScript('cesta/ke/skriptu.js'){
   //Prvě jste načetli skript a můžeme používat požadavek POST.
-}
+});
 
 //načítání skriptů JavaScriptu se serveru a jejich spouštění
-$.getJSON('cesta/ke/skriptu.js')
+//parsování vrácených dat jako dokument JSON
+$.getJSON('/example.php'){
+  'parametrDotazovacihoRetezce' : 'hodnotaParametru'
+  }, function(data, textStatus, jqXHR){
+    console.log(data);
+});
+
 
 </script>
 

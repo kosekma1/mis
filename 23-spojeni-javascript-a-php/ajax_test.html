@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+ <meta charset="UTF-8" />
+</head>
+
+
+<body>
+<script src = "//code.jquery.com/jquery-3.4.1.min.js"></script>  
+<script type="text/javascript">
+
+$.post('/mis/23-spojeni-javascript-a-php/chat/chat.php', {
+  'message' : 'ajaxový požadavek'
+}, function(data, textStatus, jqXHR){
+    console.log(data);
+});
+
+$.getJSON('/mis/23-spojeni-javascript-a-php/chat/chat.php', {
+  'message' : 'hodnotaParametru'
+  }, function(data, textStatus, jqXHR){
+    console.log(data);
+});
+</script>
+
+</body>
+
+
+</html>
